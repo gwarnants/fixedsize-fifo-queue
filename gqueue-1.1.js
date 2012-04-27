@@ -1,8 +1,8 @@
 /**
  * GQueue
  * Fixed size FIFO queue class providing associative access. Can also be used as a Circular Buffer.
- * @author  Geoffray Warnants - http://www.geoffray.be
- * @version 1.0.20100921
+ * @author  Geoffray Warnants <http://www.geoffray.be>
+ * @version 1.1.20101014
  */
 
 /**
@@ -68,5 +68,24 @@ GQueue.prototype = {
      */
     find: function(k){
         return (typeof(this.data[k])!="undefined") ? this.data[k] : null;
-    }
+    },
+    /**
+     * Unset an element for a given key
+     * @param {String}  k   Element key
+     * @return {Void}
+     */
+    unset: function(k){
+        if (typeof(this.data[k])!="undefined") {
+            delete this.data[k];
+            this.length--;
+        }
+    },  
+    /**
+     * Clear all elements
+     * @return {Void}
+     */
+    clear: function(){
+        this.data = {};
+        this.length = 0;
+    }    
 }

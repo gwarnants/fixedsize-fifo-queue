@@ -2,7 +2,7 @@
  * GQueue
  * Fixed size FIFO queue class providing associative access. Can also be used as a Circular Buffer.
  * @author  Geoffray Warnants <http://www.geoffray.be>
- * @version 1.1.20101014
+ * @version 1.2.20101113
  */
 
 /**
@@ -26,19 +26,18 @@ GQueue.prototype = {
      * @param {Object}  v   Value
      * @return {int}    The new length, or -1 if the queue is full
      */
-    push: function(k,v){
-        if (this.circular) {
-            this.data[k]=v;
-            if (++this.length > this.maxlength) {
+    push: function (k, v) {
+        if (typeof(this.data[k])=="undefined") {
+            if (this.length < this.maxlength) {
+                this.length++;
+            } else if (this.circular) {
                 this.pop();
+            } else {
+                return -1;
             }
-            return this.length;
-        } else if (this.length < this.maxlength) {
-            this.data[k]=v;
-            return this.length++;
-        } else {
-            return -1;
         }
+        this.data[k] = v;
+        return this.length;
     },
     /**
      * Removes the last element of the queue

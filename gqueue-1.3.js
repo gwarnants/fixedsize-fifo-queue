@@ -11,11 +11,11 @@
  * @param {Boolean} circular If true, the queue as will be defined as a "Circular Buffer".
  * @constructor
  */
-function GQueue(size,circular){
+function GQueue(size, circular) {
     this.data = {};
     this.circular = Boolean(circular);
-    if (isNaN(this.maxlength=parseInt(size))) {
-        this.maxlength=0;
+    if (isNaN(this.maxlength = parseInt(size))) {
+        this.maxlength = 0;
     }
     this.length = 0;
 }
@@ -27,7 +27,7 @@ GQueue.prototype = {
      * @return {int}    The new length, or -1 if the queue is full
      */
     push: function (k, v) {
-        if (typeof(this.data[k])=="undefined") {
+        if (typeof this.data[k] === "undefined") {
             if (this.length < this.maxlength) {
                 this.length++;
             } else if (this.circular) {
@@ -44,7 +44,7 @@ GQueue.prototype = {
      * Removes the last element of the queue
      * @return {Object}    The removed element, or null if none.
      */
-    pop: function(){
+    pop: function () {
         for (var i in this.data) {
             var value = this.data[i];
             delete this.data[i];
@@ -58,24 +58,24 @@ GQueue.prototype = {
      * @param {String}  k   Searched key
      * @return {Boolean}
      */
-    has: function(k){
-        return typeof(this.data[k])!="undefined";
+    has: function (k) {
+        return typeof this.data[k] !== "undefined";
     },
     /**
      * Searches an element for a given key
      * @param {String} k  Searched key
      * @return {Object}    The found element, or null if none.
      */
-    find: function(k){
-        return (typeof(this.data[k])!="undefined") ? this.data[k] : null;
+    find: function (k) {
+        return (typeof this.data[k] !== "undefined") ? this.data[k] : null;
     },
     /**
      * Unset an element for a given key
      * @param {String}  k   Element key
      * @return {Void}
      */
-    unset: function(k){
-        if (typeof(this.data[k])!="undefined") {
+    unset: function (k) {
+        if (typeof this.data[k] !== "undefined") {
             delete this.data[k];
             this.length--;
         }
@@ -84,8 +84,8 @@ GQueue.prototype = {
      * Clear all elements
      * @return {Void}
      */
-    clear: function(){
+    clear: function () {
         this.data = {};
         this.length = 0;
     }
-}
+};

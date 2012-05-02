@@ -12,6 +12,9 @@
  * @constructor
  */
 function GQueue(size, circular) {
+    if (!(this instanceof GQueue)) {
+        return new GQueue(size, circular);
+    }
     this.data = {};
     this.circular = Boolean(circular);
     if (isNaN(this.maxlength = parseInt(size))) {

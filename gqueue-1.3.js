@@ -17,7 +17,8 @@ function GQueue(size, circular) {
     }
     this.data = {};
     this.circular = Boolean(circular);
-    if (isNaN(this.maxlength = parseInt(size))) {
+    this.maxlength = parseInt(size, 10);
+    if (isNaN(this.maxlength)) {
         this.maxlength = 0;
     }
     this.length = 0;
